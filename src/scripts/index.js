@@ -1,5 +1,8 @@
 import 'regenerator-runtime'; /* for async await transpile */
 import '../styles/style.scss';
+import App from './views/App';
+import MenuInitiator from './utils/classes/MenuInitiator';
+import FooterInitiator from './utils/classes/FooterInitiator';
 import swRegister from './utils/sw-register';
 import data from '../DATA.json';
 
@@ -25,7 +28,7 @@ function showArticles (search) {
     result.forEach(item => {
       articles += `
       <article class="bg-white border-primary border-rad-8px">
-          <img class="pictures border-rad-8px" src="${item.pictureId}" alt="${item.name} Picture">
+          <img class="pictures border-rad-8px" src="${item.pictureId}" alt="${item.name}">
           <section class="m-a-8px">
               <h3 class="m-y-0 txt-primary">
                   <a href="#" class="flex align-items-center">${item.name}</a>
@@ -48,7 +51,7 @@ function showArticles (search) {
                       ${item.city}
                   </li>
               </ul>
-              <p class="txt-justify">${item.description}</p>
+              <p class="txt-justify">${item.description.substring(0, 150)}...</p>
           </section>
       </article>
     `;
@@ -63,7 +66,7 @@ function showArticles (search) {
           if (picture.getAttribute('src') !== './images/sorry.jpg') {
             picture.setAttribute('src', './images/sorry.jpg');
             const defaultAlt = picture.getAttribute('alt');
-            picture.setAttribute('alt', `${defaultAlt} Cannot be Loaded`);
+            picture.setAttribute('alt', `${defaultAlt} Picture Cannot be Loaded`);
           }
         });
       });
@@ -85,39 +88,20 @@ if (articlesContainer) {
       showArticles(searchBox.value);
     }
   });
-
-  document.body.querySelector('#year').innerHTML = new Date().getFullYear();
-
-  if (document.documentElement.clientWidth <= 640) {
-    document.body.querySelectorAll('.max-height-0 .menu-item').forEach(item => {
-      item.setAttribute('tabindex', '-1');
-    });
-  }
-  document.body.querySelector('#show-menu').addEventListener('click', () => {
-    const menu = document.body.querySelector('#menu');
-    menu.classList.toggle('max-height-0');
-    menu.classList.toggle('max-height-screen');
-
-    document.body.querySelectorAll('.menu-item').forEach(item => {
-      item.setAttribute('tabindex', [0].includes(parseInt(item.getAttribute('tabindex'), 10)) ? '-1' : '0');
-    });
-  });
-
-  window.addEventListener('resize', event => {
-    if (document.documentElement.clientWidth <= 640) {
-      document.body.querySelectorAll('.max-height-0 .menu-item').forEach(item => {
-        item.setAttribute('tabindex', '-1');
-      });
-      document.body.querySelectorAll('.max-height-screen .menu-item').forEach(item => {
-        item.setAttribute('tabindex', '0');
-      });
-    } else {
-      document.body.querySelectorAll('.menu-item').forEach(item => {
-        item.setAttribute('tabindex', '0');
-      });
-    }
-  });
 }
+
+const menu = new MenuInitiator({
+  menu: document.body.querySelector('#menu'),
+  button: document.body.querySelector('#show-menu'),
+  itemsSelector: '.menu-item',
+});
+const footer = new FooterInitiator(document.body.querySelector('#year'));
+const app = new App({
+  menu,
+  footer,
+});
+
+app.render();
 
 window.addEventListener('load', () => {
   swRegister();
