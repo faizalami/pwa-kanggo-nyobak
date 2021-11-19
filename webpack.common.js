@@ -1,7 +1,7 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const WebpackPwaManifest = require('webpack-pwa-manifest');
-const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const WebpackPwaManifest = require('webpack-pwa-manifest')
+const path = require('path')
 
 module.exports = {
   entry: path.resolve(__dirname, 'src/scripts/index.js'),
@@ -26,11 +26,11 @@ module.exports = {
         test: /\.s[ac]ss$/i,
         use: [
           // Creates `style` nodes from JS strings
-          "style-loader",
+          'style-loader',
           // Translates CSS into CommonJS
-          "css-loader",
+          'css-loader',
           // Compiles Sass to CSS
-          "sass-loader",
+          'sass-loader',
         ],
       },
     ],
@@ -55,14 +55,14 @@ module.exports = {
       start_url: '/index.html',
       display: 'standalone',
       background_color: '#FEF9F4',
-      theme_color: "#AA2B1D",
+      theme_color: '#AA2B1D',
       icons: [
         {
           src: path.resolve(__dirname, 'src/public/images/icons/icon.png'),
           sizes: [96, 128, 192, 256, 384, 512],
           purpose: 'any maskable',
         },
-      ]
+      ],
     }),
   ],
-};
+}
