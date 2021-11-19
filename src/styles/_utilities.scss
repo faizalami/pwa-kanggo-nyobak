@@ -15,7 +15,7 @@ html, body {
 }
 
 html {
-  background-color: color.adjust($brown-2, $lightness: 25%);
+  background-color: color.adjust($color-1, $lightness: 41%);
 }
 
 img {
@@ -175,11 +175,19 @@ ul > li {
     }
   }
 
-  .#{$prefix}height-auto {
-    height: auto;
-  }
-  .#{$prefix}height-0 {
-    height: 0;
+  $heights: (
+    '0': 0,
+    'auto': 'auto',
+    '100': 100%,
+    'screen': 100vh,
+  );
+  @each $name, $height in $heights {
+    .#{$prefix}height-#{$name} {
+      height: #{$height};
+    }
+    .#{$prefix}max-height-#{$name} {
+      max-height: #{$height};
+    }
   }
 
   // Grid

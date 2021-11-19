@@ -88,14 +88,14 @@ if (articlesContainer) {
   document.body.querySelector('#year').innerHTML = new Date().getFullYear();
 
   if (document.documentElement.clientWidth <= 640) {
-    document.body.querySelectorAll('.height-0 .menu-item').forEach(item => {
+    document.body.querySelectorAll('.max-height-0 .menu-item').forEach(item => {
       item.setAttribute('tabindex', '-1')
     });
   }
   document.body.querySelector('#show-menu').addEventListener('click', () => {
     const menu = document.body.querySelector('#menu');
-    menu.classList.toggle('height-0');
-    menu.classList.toggle('height-auto');
+    menu.classList.toggle('max-height-0');
+    menu.classList.toggle('max-height-screen');
 
     document.body.querySelectorAll('.menu-item').forEach(item => {
       item.setAttribute('tabindex', [0].includes(parseInt(item.getAttribute('tabindex'), 10)) ? '-1' : '0')
@@ -104,10 +104,10 @@ if (articlesContainer) {
 
   window.addEventListener('resize', event => {
     if (document.documentElement.clientWidth <= 640) {
-      document.body.querySelectorAll('.height-0 .menu-item').forEach(item => {
+      document.body.querySelectorAll('.max-height-0 .menu-item').forEach(item => {
         item.setAttribute('tabindex', '-1')
       });
-      document.body.querySelectorAll('.height-auto .menu-item').forEach(item => {
+      document.body.querySelectorAll('.max-height-screen .menu-item').forEach(item => {
         item.setAttribute('tabindex', '0')
       });
     } else {

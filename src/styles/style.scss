@@ -42,6 +42,10 @@
   height: 2rem;
 }
 
+#menu {
+  transition: max-height linear .25s;
+}
+
 // Hero
 #hero {
   height: 250px;
