@@ -6,12 +6,12 @@
   "scripts": {
     "start-dev": "webpack-dev-server --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
-    "lint": "eslint --ext .js --ignore-path .eslintignore ./src",
-    "lint:fix": "eslint --fix --ext .js --ignore-path .eslintignore ./src",
+    "lint": "eslint --ext .js --ignore-path .eslintignore .",
+    "lint:fix": "eslint --fix --ext .js --ignore-path .eslintignore .",
     "test": "karma start"
   },
   "keywords": [],
-  "author": "your_name <your.email@domain.com>",
+  "author": "faizalami (f.a.faizal.amiruddin@gmail.com)",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.10.5",
@@ -44,6 +44,7 @@
     "whatwg-fetch": "^3.2.0"
   },
   "dependencies": {
-    "regenerator-runtime": "^0.13.5"
+    "regenerator-runtime": "^0.13.5",
+    "serviceworker-webpack-plugin": "^1.0.1"
   }
 }

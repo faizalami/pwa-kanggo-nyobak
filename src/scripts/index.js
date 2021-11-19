@@ -1,25 +1,26 @@
-import 'regenerator-runtime' /* for async await transpile */
-import '../styles/style.scss'
-import data from '../DATA.json'
+import 'regenerator-runtime'; /* for async await transpile */
+import '../styles/style.scss';
+import swRegister from './utils/sw-register';
+import data from '../DATA.json';
 
-const articlesContainer = document.body.querySelector('#articles-container')
+const articlesContainer = document.body.querySelector('#articles-container');
 
 function showArticles (search) {
-  articlesContainer.innerHTML = ''
-  let articles = ''
+  articlesContainer.innerHTML = '';
+  let articles = '';
   const result = data.restaurants
     .filter(item => {
       if ([null, undefined, ''].includes(search)) {
-        return true
+        return true;
       }
 
       let found = false;
       ['name', 'description', 'city'].some(key => {
-        found = item[key].toLowerCase().includes(search.toLowerCase())
-        return found
-      })
-      return found
-    })
+        found = item[key].toLowerCase().includes(search.toLowerCase());
+        return found;
+      });
+      return found;
+    });
   if (result.length) {
     result.forEach(item => {
       articles += `
@@ -50,70 +51,74 @@ function showArticles (search) {
               <p class="txt-justify">${item.description}</p>
           </section>
       </article>
-    `
-    })
+    `;
+    });
 
-    articlesContainer.innerHTML = articles
+    articlesContainer.innerHTML = articles;
 
-    const pictures = document.body.querySelectorAll('.pictures')
+    const pictures = document.body.querySelectorAll('.pictures');
     if (pictures && pictures.length) {
       pictures.forEach(picture => {
         picture.addEventListener('error', item => {
           if (picture.getAttribute('src') !== './images/sorry.jpg') {
-            picture.setAttribute('src', './images/sorry.jpg')
-            const defaultAlt = picture.getAttribute('alt')
-            picture.setAttribute('alt', `${defaultAlt} Cannot be Loaded`)
+            picture.setAttribute('src', './images/sorry.jpg');
+            const defaultAlt = picture.getAttribute('alt');
+            picture.setAttribute('alt', `${defaultAlt} Cannot be Loaded`);
           }
-        })
-      })
+        });
+      });
     }
   } else {
     articlesContainer.innerHTML = `
       <div class="grid-col-span-1 laptop-grid-col-span-3">
         <h3 tabindex="0" class="txt-center txt-primary">No Restaurant Found.</h3>
       </div>
-    `
+    `;
   }
 }
 
 if (articlesContainer) {
-  showArticles()
+  showArticles();
   document.body.querySelector('#search-button').addEventListener('click', () => {
-    const searchBox = document.body.querySelector('#search')
+    const searchBox = document.body.querySelector('#search');
     if (searchBox) {
-      showArticles(searchBox.value)
+      showArticles(searchBox.value);
     }
-  })
+  });
 
-  document.body.querySelector('#year').innerHTML = new Date().getFullYear()
+  document.body.querySelector('#year').innerHTML = new Date().getFullYear();
 
   if (document.documentElement.clientWidth <= 640) {
     document.body.querySelectorAll('.max-height-0 .menu-item').forEach(item => {
-      item.setAttribute('tabindex', '-1')
-    })
+      item.setAttribute('tabindex', '-1');
+    });
   }
   document.body.querySelector('#show-menu').addEventListener('click', () => {
-    const menu = document.body.querySelector('#menu')
-    menu.classList.toggle('max-height-0')
-    menu.classList.toggle('max-height-screen')
+    const menu = document.body.querySelector('#menu');
+    menu.classList.toggle('max-height-0');
+    menu.classList.toggle('max-height-screen');
 
     document.body.querySelectorAll('.menu-item').forEach(item => {
-      item.setAttribute('tabindex', [0].includes(parseInt(item.getAttribute('tabindex'), 10)) ? '-1' : '0')
-    })
-  })
+      item.setAttribute('tabindex', [0].includes(parseInt(item.getAttribute('tabindex'), 10)) ? '-1' : '0');
+    });
+  });
 
   window.addEventListener('resize', event => {
     if (document.documentElement.clientWidth <= 640) {
       document.body.querySelectorAll('.max-height-0 .menu-item').forEach(item => {
-        item.setAttribute('tabindex', '-1')
-      })
+        item.setAttribute('tabindex', '-1');
+      });
       document.body.querySelectorAll('.max-height-screen .menu-item').forEach(item => {
-        item.setAttribute('tabindex', '0')
-      })
+        item.setAttribute('tabindex', '0');
+      });
     } else {
       document.body.querySelectorAll('.menu-item').forEach(item => {
-        item.setAttribute('tabindex', '0')
-      })
+        item.setAttribute('tabindex', '0');
+      });
     }
-  })
+  });
 }
+
+window.addEventListener('load', () => {
+  swRegister();
+});
