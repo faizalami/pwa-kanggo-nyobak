@@ -1,0 +1,205 @@
+@use 'sass:color';
+
+// Reset styles & base styles
+* {
+  font-family: 'Open Sans', sans-serif;
+  box-sizing: border-box;
+}
+
+html, body {
+  min-height: 100vh;
+  max-width: 100vw !important;
+  margin: 0 !important;
+  display: flex;
+  flex-direction: column;
+}
+
+html {
+  background-color: color.adjust($brown-2, $lightness: 25%);
+}
+
+img {
+  max-width: 100vw;
+  width: 100%;
+  object-position: center;
+  object-fit: cover;
+}
+
+a {
+  text-decoration: none;
+  line-height: 44px;
+  min-height: 44px;
+  min-width: 44px;
+}
+
+@media screen and (min-width: map-get($breakpoints, 'laptop')){
+  a {
+    line-height: initial;
+  }
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+ul > li {
+  list-style-type: none;
+}
+
+@mixin base ($breakpoint: false) {
+  $prefix: '';
+
+  @if ($breakpoint != false) {
+    $prefix: $breakpoint + '-';
+  }
+
+  // Colors
+  @each $color, $value in $theme-colors {
+    .#{$prefix}bg-#{$color} {
+      background-color: #{$value} !important;
+    }
+    .#{$prefix}txt-#{$color}, .#{$prefix}txt-#{$color} * {
+      color: #{$value} !important;
+    }
+    .#{$prefix}border-#{$color} {
+      border: #{$value} solid 1px;
+    }
+    .#{$prefix}bg-hover-#{$color}:hover {
+      background-color: #{$value} !important;
+    }
+    .#{$prefix}txt-hover-#{$color}:hover, .#{$prefix}txt-hover-#{$color}:hover * {
+      color: #{$value} !important;
+    }
+    .#{$prefix}border-hover-#{$color}:hover {
+      border: #{$value} solid 1px;
+    }
+  }
+
+  // Display
+  @each $display in 'block', 'flex', 'inline-flex', 'none' {
+    .#{$prefix}#{$display} {
+      display: #{$display};
+    }
+  }
+
+  .#{$prefix}flex-column {
+    flex-direction: column;
+  }
+  .#{$prefix}flex-row {
+    flex-direction: row;
+  }
+
+  // Margin & Padding
+  $directions: (
+    'l': 'left',
+    'r': 'right',
+    't': 'top',
+    'b': 'bottom'
+  );
+  @each $value in 'auto', 0, '8px' {
+    @each $name, $direction in $directions {
+      .#{$prefix}m-#{$name}-#{$value} {
+        margin-#{$direction}: #{$value};
+      }
+      .#{$prefix}m-a-#{$value} {
+        margin: #{$value};
+      }
+    }
+    .#{$prefix}m-x-#{$value} {
+      margin-left: #{$value};
+      margin-right: #{$value};
+    }
+    .#{$prefix}m-y-#{$value} {
+      margin-top: #{$value};
+      margin-bottom: #{$value};
+    }
+  }
+
+  @each $value in 0, '8px' {
+    @each $name, $direction in $directions {
+      .#{$prefix}p-#{$name}-#{$value} {
+        padding-#{$direction}: #{$value};
+      }
+      .#{$prefix}p-a-#{$value} {
+        padding: #{$value};
+      }
+    }
+    .#{$prefix}p-x-#{$value} {
+      padding-left: #{$value};
+      padding-right: #{$value};
+    }
+    .#{$prefix}p-y-#{$value} {
+      padding-top: #{$value};
+      padding-bottom: #{$value};
+    }
+  }
+
+  // Justify & Align
+  @each $type in 'center', 'flex-start', 'flex-end', 'space-between' {
+    .#{$prefix}justify-#{$type} {
+      justify-content: #{$type};
+    }
+    .#{$prefix}align-#{$type} {
+      align-content: #{$type};
+    }
+    .#{$prefix}align-items-#{$type} {
+      align-items: #{$type};
+    }
+  }
+
+  // Text Align
+  @each $align in 'left', 'right', 'center', 'justify' {
+    .#{$prefix}txt-#{$align} {
+      text-align: #{$align};
+    }
+  }
+
+  // Border Radius
+  .#{$prefix}border-rad-8px {
+    border-radius: 8px;
+  }
+  .#{$prefix}border-rad-0 {
+    border-radius: 0;
+  }
+
+  // Width & height
+  $widths: (
+    'screen': 100vw,
+    'auto': 'auto',
+    '100': 100%,
+  );
+  @each $name, $width in $widths {
+    .#{$prefix}width-#{$name} {
+      width: #{$width};
+    }
+  }
+
+  .#{$prefix}height-auto {
+    height: auto;
+  }
+  .#{$prefix}height-0 {
+    height: 0;
+  }
+
+  // Grid
+  @for $i from 1 through 12 {
+    .#{$prefix}grid-template-#{$i} {
+      display: grid;
+      grid-template-columns: repeat($i, minmax(0, 1fr));
+      column-gap: 8px;
+      row-gap: 8px;
+    }
+    .#{$prefix}grid-col-span-#{$i} {
+      grid-column: span #{$i} / span #{$i};
+    }
+  }
+}
+
+@include base();
+
+@each $name, $size in $breakpoints {
+  @media screen and (min-width: #{$size}) {
+    @include base($name)
+  }
+}

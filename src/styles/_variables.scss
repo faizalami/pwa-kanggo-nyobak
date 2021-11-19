@@ -1,0 +1,21 @@
+$primary: #85603F;
+$secondary: #9E7540;
+$brown-1: #BD9354;
+$brown-2: #E3D18A;
+
+$theme-colors: (
+  'primary': $primary,
+  'secondary': $secondary,
+  'brown-1': $brown-1,
+  'brown-2': $brown-2,
+  'white': #ffffff,
+  'gray': #6B7280,
+  'light-gray': #E5E7EB,
+  'black': #000000,
+  'transparent': transparent,
+);
+
+$breakpoints: (
+  'tablet': 640px,
+  'laptop': 1024px,
+);

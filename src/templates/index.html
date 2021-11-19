@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fai-Food | Restaurant Apps Starter Project</title>
+</head>
+<body>
+    <a href="#content" class="bg-primary border-primary txt-white p-a-8px border-rad-8px" id="skip-link">
+        Go to contents
+        <span>
+            <svg xmlns="http://www.w3.org/2000/svg" height="12px" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+            </svg>
+        </span>
+    </a>
+    <header class="txt-white bg-secondary flex flex-column tablet-flex-row tablet-align-items-center">
+        <div class="flex align-center p-a-8px">
+            <h1 id="brand" class="m-y-0 m-r-auto">Fai-Food</h1>
+            <button id="show-menu" class="bg-transparent border-primary align-items-center border-rad-8px block tablet-none" aria-label="Show Menu">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+        <nav id="menu" class="height-0 tablet-height-auto tablet-m-l-auto tablet-m-r-8px">
+            <ul class="tablet-grid-template-4">
+                <li>
+                    <a
+                        class="menu-item bg-primary bg-hover-secondary border-transparent flex align-items-center p-x-8px tablet-justify-center tablet-border-rad-8px tablet-border-hover-primary laptop-p-y-8px"
+                        href="/"
+                    >
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a
+                        class="menu-item bg-primary bg-hover-secondary border-transparent flex align-items-center p-x-8px tablet-justify-center tablet-border-rad-8px tablet-border-hover-primary laptop-p-y-8px"
+                        href="#"
+                    >
+                        Favorite
+                    </a>
+                </li>
+                <li>
+                    <a
+                        class="menu-item bg-primary bg-hover-secondary border-transparent flex align-items-center p-x-8px tablet-justify-center tablet-border-rad-8px tablet-border-hover-primary laptop-p-y-8px"
+                        href="https://github.com/faizalami"
+                        target="_blank"
+                    >
+                        About Us
+                    </a>
+                </li>
+                <li>
+                    <a
+                        class="menu-item bg-primary bg-hover-secondary border-transparent flex align-items-center p-x-8px tablet-justify-center tablet-border-rad-8px tablet-border-hover-primary laptop-p-y-8px"
+                        href="#"
+                    >
+                        Log in
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero" class="m-b-8px">
+        <img id="hero-picture" src="./images/heros/hero-image.jpg" alt="">
+        <div id="hero-text" class="p-a-8px txt-white">
+            <h2 id="hero-header" class="m-y-8px">Find Your Favourite Restaurants</h2>
+            <p class="m-a-0">
+                Discover cozy and comfy restaurants only in <strong>Fai-Food</strong>.<br />
+            </p>
+            <p class="m-a-0 m-b-8px">
+                <strong><a href="#" class="inline-flex">Join us</a></strong> to dine in.
+            </p>
+        </div>
+    </section>
+
+    <main id="content" class="m-x-auto m-b-8px p-x-8px">
+        <section class="grid-template-4 m-b-8px">
+            <div class="grid-col-span-4">
+                <h2 id="content-header" class="txt-center txt-primary m-y-8px">Discover Restaurants</h2>
+            </div>
+            <div class="grid-col-span-3">
+                <input
+                    id="search"
+                    class="width-100 border-primary txt-primary border-rad-8px p-x-8px"
+                    type="text"
+                    name="search"
+                    aria-label="Search box"
+                    placeholder="Type some keywords."
+                />
+            </div>
+            <div class="grid-col-span-1 txt-right">
+                <button type="button" id="search-button" class="width-100 bg-secondary border-primary border-rad-8px txt-white align-items-center" aria-label="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </button>
+            </div>
+        </section>
+        <section id="articles-container" class="grid-template-1 laptop-grid-template-3 m-y-8px">
+
+        </section>
+    </main>
+
+    <footer class="bg-primary flex align-items-center justify-center txt-white txt-center m-t-auto">
+        © <span id="year"></span> &nbsp;<a class="inline-flex align-items-center" href="https://github.com/faizalami" target="_blank">Faizal Amiruddin</a>.
+    </footer>
+</body>
+</html>
