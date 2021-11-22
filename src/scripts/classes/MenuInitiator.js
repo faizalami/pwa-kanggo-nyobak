@@ -31,12 +31,15 @@ class MenuInitiator extends ComponentInitiator {
   }
 
   _initToggle () {
-    this._button.addEventListener('click', () => {
-      this._menu.classList.toggle(this._HIDDEN_SELECTOR_CLASS);
-      this._menu.classList.toggle(this._SHOWN_SELECTOR_CLASS);
+    this._button.addEventListener('click', () => this._toggleHandler());
+    this._menu.addEventListener('click', () => this._toggleHandler());
+  }
 
-      this._setMenuItemsFocusable(!this._focusable);
-    });
+  _toggleHandler () {
+    this._menu.classList.toggle(this._HIDDEN_SELECTOR_CLASS);
+    this._menu.classList.toggle(this._SHOWN_SELECTOR_CLASS);
+
+    this._setMenuItemsFocusable(!this._focusable);
   }
 
   _handleWindowResize () {
