@@ -1,4 +1,4 @@
-import 'regenerator-runtime'; /* for async await transpile */
+import 'regenerator-runtime';
 import '../styles/style.scss';
 import App from './App';
 import MenuInitiator from './classes/MenuInitiator';

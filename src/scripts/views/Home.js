@@ -1,5 +1,5 @@
 import '../components/RestaurantCard';
-import data from '../../DATA.json';
+import restaurantsService from '../services/restaurants';
 
 class Home extends HTMLElement {
   connectedCallback () {
@@ -9,7 +9,7 @@ class Home extends HTMLElement {
   _displayRestaurants (restaurants) {
     const restaurantsContainer = this.querySelector('#restaurants-container');
     restaurantsContainer.innerHTML = '';
-    if (restaurants.length) {
+    if (restaurants && restaurants.length) {
       restaurants.forEach(restaurant => {
         const restaurantCard = document.createElement('restaurant-card');
         restaurantCard.restaurant = restaurant;
@@ -41,28 +41,19 @@ class Home extends HTMLElement {
     }
   }
 
-  _searchRestaurants (search) {
-    return data.restaurants
-      .filter(item => {
-        if ([null, undefined, ''].includes(search)) {
-          return true;
-        }
-
-        let found = false;
-        ['name', 'description', 'city'].some(key => {
-          found = item[key].toLowerCase().includes(search.toLowerCase());
-          return found;
-        });
-        return found;
-      });
+  async _searchRestaurants (search) {
+    const { data } = await restaurantsService.search(search);
+    return data;
   }
 
-  _afterRender () {
-    this._displayRestaurants(data.restaurants);
-    this.querySelector('#search-button').addEventListener('click', () => {
+  async _afterRender () {
+    const { data } = await restaurantsService.getAll();
+    this._displayRestaurants(data);
+    this.querySelector('#search-button').addEventListener('click', async () => {
       const searchBox = this.querySelector('#search');
       if (searchBox) {
-        this._displayRestaurants(this._searchRestaurants(searchBox.value));
+        const data = await this._searchRestaurants(searchBox.value);
+        this._displayRestaurants(data);
       }
     });
   }
