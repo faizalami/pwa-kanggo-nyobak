@@ -1,13 +1,5 @@
-import UrlParser from './routes/url-parser';
-import routes from './routes/routes';
-
-function pascalToKebab (pascalString) {
-  return pascalString.split('').map((letter, index) => {
-    return letter.toUpperCase() === letter
-      ? `${index !== 0 ? '-' : ''}${letter.toLowerCase()}`
-      : letter;
-  }).join('');
-}
+import './views/NotFound';
+import router from './routes/router';
 
 class App {
   constructor (content, componentsInitiators) {
@@ -26,11 +18,13 @@ class App {
   }
 
   render () {
-    const url = UrlParser.parseActiveUrlWithCombiner();
-    const page = routes[url];
-    const pageName = `${pascalToKebab(page.name)}-page`;
-    customElements.define(pageName, page);
-    this._content.innerHTML = `<${pageName}></${pageName}>`;
+    const matchedRoute = router.matchedRoute();
+    if (matchedRoute) {
+      customElements.define(matchedRoute.name, matchedRoute.component);
+      this._content.innerHTML = `<${matchedRoute.name}></${matchedRoute.name}>`;
+    } else {
+      this._content.innerHTML = '<not-found></not-found>';
+    }
   }
 }
 
