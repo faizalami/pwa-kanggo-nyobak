@@ -17,6 +17,28 @@ class Detail extends HTMLElement {
     this._detail = data;
   }
 
+  async _afterRender () {
+    const postReviewForm = this.querySelector('#post-review-form');
+    if (postReviewForm) {
+      postReviewForm.addEventListener('submit', async event => {
+        event.preventDefault();
+
+        const payload = {
+          id: this._detail.id,
+          name: postReviewForm.elements.name.value,
+          review: postReviewForm.elements.review.value,
+        };
+
+        const { error, data } = await restaurantsService.postReview(payload);
+
+        if (!error) {
+          this._detail.customerReviews = [...data];
+          this.render();
+        }
+      });
+    }
+  }
+
   render () {
     this.innerHTML = '';
     if (this._detail) {
@@ -95,7 +117,7 @@ class Detail extends HTMLElement {
               </ul>
             </div>
           </aside>
-          <section class="m-y-8px">
+          <section class="grid-col-span-4 m-y-8px">
             <h2 class="m-b-0 font-normal txt-primary">
               <span>
                 <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 24 24" fill="currentColor">
@@ -106,7 +128,7 @@ class Detail extends HTMLElement {
             </h2>
             <div class="border-primary border-rad-8px m-y-8px p-a-8px">
               <h3 class="font-normal txt-primary m-y-0">Post a Review</h3>
-              <form class="grid-template-1">
+              <form id="post-review-form" class="grid-template-1">
                 <div>
                   <label for="name" class="txt-primary font-smaller">Name</label>
                   <input type="text" name="name" id="name" class="width-100 border-primary txt-primary border-rad-8px p-x-8px" />
@@ -115,7 +137,7 @@ class Detail extends HTMLElement {
                   <label for="review" class="txt-primary font-smaller">Review</label>
                   <textarea name="review" id="review" rows="3" class="width-100 border-primary txt-primary border-rad-8px p-x-8px"></textarea>
                 </div>
-                <button class="m-l-auto p-x-8px bg-secondary border-primary border-rad-8px txt-white align-items-center">
+                <button type="submit" class="m-l-auto p-x-8px bg-secondary border-primary border-rad-8px txt-white align-items-center">
                   Post
                   <span>
                     <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 24 24" fill="currentColor">
@@ -134,6 +156,7 @@ class Detail extends HTMLElement {
     } else {
       this.innerHTML = '<not-found></not-found>';
     }
+    this._afterRender();
   }
 }
 

@@ -21,14 +21,15 @@ export default {
   },
   get (url, config) {
     return this.request(url, {
-      config,
+      ...config,
       method: 'GET',
     });
   },
-  post (url, config) {
+  post (url, payload, config) {
     return this.request(url, {
-      config,
+      ...config,
       method: 'POST',
+      body: JSON.stringify(payload),
     });
   },
 };

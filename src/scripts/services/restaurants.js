@@ -49,4 +49,19 @@ export default {
       };
     }
   },
+  async postReview (payload) {
+    try {
+      const { customerReviews, ...response } = await httpreq.post('review', payload);
+
+      return {
+        ...response,
+        data: customerReviews,
+      };
+    } catch (error) {
+      return {
+        ...error,
+        data: null,
+      };
+    }
+  },
 };
