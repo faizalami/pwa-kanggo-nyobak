@@ -31,6 +31,7 @@ class LikeButton extends HTMLElement {
           await favoritesService.save(this._restaurant);
         }
         this._liked = !this._liked;
+        this.dispatchEvent(new CustomEvent('liked', { detail: this._liked }));
         this.render();
       }
     });

@@ -9,6 +9,14 @@ class Favorite extends RestaurantList {
     const data = await favoritesService.getAll();
     LoadingInitiator.hideLoading();
     this._displayRestaurants(data);
+
+    this.querySelectorAll('like-button').forEach(likeButton => {
+      likeButton.addEventListener('liked', async event => {
+        if (!event.detail) {
+          await this._loadRestaurants();
+        }
+      });
+    });
   }
 
   async _afterRender () {
