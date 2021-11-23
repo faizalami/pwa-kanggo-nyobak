@@ -90,10 +90,6 @@
 }
 
 // Content
-#content-header {
-  font-weight: normal;
-}
-
 #search,
 #search-button {
   min-height: 44px;
@@ -111,6 +107,23 @@
   .pictures {
     height: 200px;
   }
+}
+
+// Like Button
+like-button > button {
+  border-radius: 50%;
+}
+
+#detail-like-button-wrapper > .like-button > button {
+  position: fixed;
+  width: 75px;
+  height: 75px;
+  bottom: 32px;
+  right: 16px;
+}
+
+#detail-like-button-wrapper > .like-button svg {
+  height: 3em;
 }
 
 // Detail

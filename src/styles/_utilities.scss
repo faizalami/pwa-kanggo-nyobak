@@ -35,6 +35,10 @@ a {
   line-height: 44px;
 }
 
+button {
+  cursor: pointer;
+}
+
 @media screen and (min-width: map-get($breakpoints, 'laptop')){
   a {
     line-height: initial;

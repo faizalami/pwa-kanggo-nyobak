@@ -6,7 +6,7 @@ class ComponentInitiator {
   }
 
   init () {
-    throw new Error('You have to implement the method calculate!');
+    throw new Error('You have to implement the method!');
   }
 }
 

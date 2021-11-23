@@ -49,9 +49,13 @@ export default {
       };
     }
   },
-  async postReview (payload) {
+  async postReview ({ id, name, review }) {
     try {
-      const { customerReviews, ...response } = await httpreq.post('review', payload);
+      const { customerReviews, ...response } = await httpreq.post('review', {
+        id,
+        name,
+        review,
+      });
 
       return {
         ...response,

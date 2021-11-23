@@ -1,5 +1,6 @@
 import LoadingInitiator from '../classes/LoadingInitiator';
 import './NotFound';
+import '../components/LikeButton';
 import restaurantsService from '../services/restaurants';
 import router from '../routes/router';
 import handleBrokenPictures from '../utils/handle-broken-pictures';
@@ -10,6 +11,16 @@ class Detail extends HTMLElement {
     this.render();
 
     handleBrokenPictures('.picture-detail');
+  }
+
+  _initLikeButton () {
+    const likeButtonWrapper = this.querySelector('#detail-like-button-wrapper');
+    if (likeButtonWrapper) {
+      const likeButton = document.createElement('like-button');
+      likeButton.classList.add('like-button');
+      likeButton.restaurant = this._detail;
+      likeButtonWrapper.appendChild(likeButton);
+    }
   }
 
   async _getDetail () {
@@ -122,6 +133,7 @@ class Detail extends HTMLElement {
               </ul>
             </div>
           </aside>
+          <div id="detail-like-button-wrapper"></div>
           <section class="grid-col-span-4 m-y-8px">
             <h2 class="m-b-0 font-normal txt-primary">
               <span>
@@ -162,6 +174,7 @@ class Detail extends HTMLElement {
       this.innerHTML = '<not-found></not-found>';
     }
     this._afterRender();
+    this._initLikeButton();
   }
 }
 
