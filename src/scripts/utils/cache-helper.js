@@ -3,27 +3,24 @@ const CacheHelper = {
     const cache = await this._openCache();
     cache.addAll(requests);
   },
-
   async deleteOldCache () {
     const cacheNames = await caches.keys();
     cacheNames
       .filter((name) => name !== process.env.CACHE_NAME)
       .map((filteredName) => caches.delete(filteredName));
   },
-
   async revalidateCache (request) {
     const response = await caches.match(request);
 
     if (response) {
+      this._fetchRequest(request);
       return response;
     }
     return this._fetchRequest(request);
   },
-
   async _openCache () {
     return caches.open(process.env.CACHE_NAME);
   },
-
   async _fetchRequest (request) {
     const response = await fetch(request);
 
