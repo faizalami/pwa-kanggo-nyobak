@@ -109,7 +109,7 @@ ul > li.dotted {
     't': 'top',
     'b': 'bottom'
   );
-  @each $value in 'auto', 0, '8px' {
+  @each $value in 'auto', 0, '8px', '16px' {
     @each $name, $direction in $directions {
       .#{$prefix}m-#{$name}-#{$value} {
         margin-#{$direction}: #{$value};

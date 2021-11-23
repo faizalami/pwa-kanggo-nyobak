@@ -54,7 +54,7 @@ class Home extends RestaurantList {
             </button>
           </div>
         </section>
-        <section id="restaurants-container" class="grid-template-1 laptop-grid-template-3 m-y-8px">
+        <section id="restaurants-container" class="grid-template-1 laptop-grid-template-3 m-t-16px">
         
         </section>
       </article>
