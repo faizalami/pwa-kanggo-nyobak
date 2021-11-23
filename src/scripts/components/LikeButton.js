@@ -50,7 +50,11 @@ class LikeButton extends HTMLElement {
       `;
     const classes = this._liked ? 'bg-primary border-primary' : 'bg-gray border-gray';
     this.innerHTML = `
-      <button type="button" aria-label="Add ${this._restaurant?.name || ''} to favorite" class="flex justify-center align-items-center txt-white ${classes}">
+      <button
+       type="button"
+       aria-label="Add ${this._restaurant && this._restaurant.name ? this._restaurant.name : ''} to favorite"
+       class="flex justify-center align-items-center txt-white ${classes}"
+      >
         ${icon}
       </button>
     `;
