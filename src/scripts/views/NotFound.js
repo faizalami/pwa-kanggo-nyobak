@@ -5,7 +5,10 @@ class NotFound extends HTMLElement {
 
   render () {
     this.innerHTML = `
-      <p>404 Not Found</p>
+      <section class="txt-primary txt-center">
+        <h2>404</h2>
+        <p>Not Found.</p>
+      </section>
     `;
   }
 }
