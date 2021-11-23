@@ -1,3 +1,4 @@
+import LoadingInitiator from '../classes/LoadingInitiator';
 import './NotFound';
 import restaurantsService from '../services/restaurants';
 import router from '../routes/router';
@@ -13,7 +14,9 @@ class Detail extends HTMLElement {
 
   async _getDetail () {
     const { params: { id } } = router.matchedRoute();
+    LoadingInitiator.showLoading();
     const { data } = await restaurantsService.detail(id);
+    LoadingInitiator.hideLoading();
     this._detail = data;
   }
 
@@ -29,7 +32,9 @@ class Detail extends HTMLElement {
           review: postReviewForm.elements.review.value,
         };
 
+        LoadingInitiator.showLoading();
         const { error, data } = await restaurantsService.postReview(payload);
+        LoadingInitiator.hideLoading();
 
         if (!error) {
           this._detail.customerReviews = [...data];
@@ -135,7 +140,7 @@ class Detail extends HTMLElement {
                 </div>
                 <div>
                   <label for="review" class="txt-primary font-smaller">Review</label>
-                  <textarea name="review" id="review" rows="3" class="width-100 border-primary txt-primary border-rad-8px p-x-8px"></textarea>
+                  <textarea name="review" id="review" rows="3" class="width-100 border-primary txt-primary border-rad-8px p-a-8px"></textarea>
                 </div>
                 <button type="submit" class="m-l-auto p-x-8px bg-secondary border-primary border-rad-8px txt-white align-items-center">
                   Post

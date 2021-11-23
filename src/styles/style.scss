@@ -69,6 +69,26 @@
   background-color: color.adjust($primary, $alpha: -0.2);
 }
 
+// Loading
+#loading {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 0;
+  width: 0;
+  display: none;
+}
+
+#loading.show {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+}
+
+#loading img {
+  width: 100px;
+  height: 100px;
+}
+
 // Content
 #content-header {
   font-weight: normal;

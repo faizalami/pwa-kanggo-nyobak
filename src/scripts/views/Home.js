@@ -1,3 +1,4 @@
+import LoadingInitiator from '../classes/LoadingInitiator';
 import '../components/RestaurantCard';
 import restaurantsService from '../services/restaurants';
 import handleBrokenPictures from '../utils/handle-broken-pictures';
@@ -28,13 +29,21 @@ class Home extends HTMLElement {
   }
 
   async _searchRestaurants (search) {
+    LoadingInitiator.showLoading();
     const { data } = await restaurantsService.search(search);
+    LoadingInitiator.hideLoading();
     return data;
   }
 
-  async _afterRender () {
+  async _loadRestaurants () {
+    LoadingInitiator.showLoading();
     const { data } = await restaurantsService.getAll();
+    LoadingInitiator.hideLoading();
     this._displayRestaurants(data);
+  }
+
+  async _afterRender () {
+    this._loadRestaurants();
     this.querySelector('#search-button').addEventListener('click', async () => {
       const searchBox = this.querySelector('#search');
       if (searchBox) {

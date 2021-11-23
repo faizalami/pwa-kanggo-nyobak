@@ -20,7 +20,9 @@ class App {
   render () {
     const matchedRoute = router.matchedRoute();
     if (matchedRoute) {
-      customElements.define(matchedRoute.name, matchedRoute.component);
+      if (!customElements.get(matchedRoute.name)) {
+        customElements.define(matchedRoute.name, matchedRoute.component);
+      }
       this._content.innerHTML = `<${matchedRoute.name}></${matchedRoute.name}>`;
     } else {
       this._content.innerHTML = '<not-found></not-found>';
