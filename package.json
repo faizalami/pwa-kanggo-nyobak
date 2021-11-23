@@ -6,6 +6,7 @@
   "scripts": {
     "start-dev": "webpack-dev-server --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
+    "start-prod": "http-server ./dist",
     "lint": "eslint --ext .js --ignore-path .eslintignore .",
     "lint:fix": "eslint --fix --ext .js --ignore-path .eslintignore .",
     "test": "karma start"
@@ -25,6 +26,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "html-webpack-plugin": "^4.3.0",
+    "http-server": "^14.0.0",
     "jasmine-ajax": "^4.0.0",
     "jasmine-core": "^3.5.0",
     "karma": "^5.1.0",
