@@ -22,8 +22,8 @@
   }
 }
 
-// Skip Link
-#skip-link {
+// Skip Button
+#skip-button {
   position: absolute;
   top: -100px;
   left: 8px;
@@ -31,7 +31,7 @@
   transition: top ease-in .5s;
 }
 
-#skip-link:focus {
+#skip-button:focus {
   top: 8px;
 }
 
