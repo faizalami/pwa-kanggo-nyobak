@@ -1,5 +1,6 @@
 import '../components/RestaurantCard';
 import restaurantsService from '../services/restaurants';
+import handleBrokenPictures from '../utils/handle-broken-pictures';
 
 class Home extends HTMLElement {
   connectedCallback () {
@@ -16,28 +17,13 @@ class Home extends HTMLElement {
         restaurantsContainer.appendChild(restaurantCard);
       });
 
-      this._handleBrokenPictures();
+      handleBrokenPictures('.pictures');
     } else {
       restaurantsContainer.innerHTML = `
         <div class="grid-col-span-1 laptop-grid-col-span-3">
           <h3 tabindex="0" class="txt-center txt-primary">No Restaurant Found.</h3>
         </div>
       `;
-    }
-  }
-
-  _handleBrokenPictures () {
-    const pictures = this.querySelectorAll('.pictures');
-    if (pictures && pictures.length) {
-      pictures.forEach(picture => {
-        picture.addEventListener('error', item => {
-          if (picture.getAttribute('src') !== './images/sorry.jpg') {
-            picture.setAttribute('src', './images/sorry.jpg');
-            const defaultAlt = picture.getAttribute('alt');
-            picture.setAttribute('alt', `${defaultAlt} Picture Cannot be Loaded`);
-          }
-        });
-      });
     }
   }
 

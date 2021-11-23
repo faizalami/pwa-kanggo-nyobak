@@ -18,7 +18,7 @@ class RestaurantCard extends HTMLElement {
         <img class="pictures border-rad-8px" src="${process.env.API_BASE_URL}images/small/${this._restaurant.pictureId}" alt="${this._restaurant.name}">
         <section class="m-a-8px">
           <h3 class="m-y-0 txt-primary">
-            <a href="#" class="flex align-items-center">${this._restaurant.name}</a>
+            <a href="#/detail/${this._restaurant.id}" class="flex align-items-center">${this._restaurant.name}</a>
           </h3>
           <ul class="m-y-8px flex txt-primary">
             <li>

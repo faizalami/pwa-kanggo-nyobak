@@ -3,7 +3,7 @@ import { match } from 'path-to-regexp';
 
 export default {
   getHashLocation () {
-    return window.location.hash.slice(1).toLowerCase();
+    return window.location.hash.slice(1).toLowerCase() || '/';
   },
   _pascalToKebab (pascalString) {
     return pascalString.split('').map((letter, index) => {

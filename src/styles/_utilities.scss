@@ -25,11 +25,14 @@ img {
   object-fit: cover;
 }
 
+a, button, input, textarea {
+  min-height: 44px;
+  min-width: 44px;
+}
+
 a {
   text-decoration: none;
   line-height: 44px;
-  min-height: 44px;
-  min-width: 44px;
 }
 
 @media screen and (min-width: map-get($breakpoints, 'laptop')){
@@ -45,6 +48,11 @@ ul {
 
 ul > li {
   list-style-type: none;
+}
+
+ul > li.dotted {
+  list-style-type: initial;
+  margin-left: 1.5em;
 }
 
 @mixin base ($breakpoint: false) {
@@ -84,10 +92,10 @@ ul > li {
   }
 
   .#{$prefix}flex-column {
-    flex-direction: column;
+    flex-flow: column wrap;
   }
   .#{$prefix}flex-row {
-    flex-direction: row;
+    flex-flow: row wrap;
   }
 
   // Margin & Padding
@@ -155,6 +163,18 @@ ul > li {
     }
   }
 
+  // Font Weight & Size
+  @each $weight in 'normal', 'bold' {
+    .#{$prefix}font-#{$weight} {
+      font-weight: #{$weight};
+    }
+  }
+  @each $size in 'medium', 'larger', 'smaller' {
+    .#{$prefix}font-#{$size} {
+      font-size: #{$size};
+    }
+  }
+
   // Border Radius
   .#{$prefix}border-rad-8px {
     border-radius: 8px;
@@ -195,8 +215,8 @@ ul > li {
     .#{$prefix}grid-template-#{$i} {
       display: grid;
       grid-template-columns: repeat($i, minmax(0, 1fr));
-      column-gap: 8px;
-      row-gap: 8px;
+      column-gap: 16px;
+      row-gap: 16px;
     }
     .#{$prefix}grid-col-span-#{$i} {
       grid-column: span #{$i} / span #{$i};

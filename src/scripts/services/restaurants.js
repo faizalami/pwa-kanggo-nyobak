@@ -34,4 +34,19 @@ export default {
       };
     }
   },
+  async detail (id) {
+    try {
+      const { restaurant, ...response } = await httpreq.get(`detail/${id}`);
+
+      return {
+        ...response,
+        data: restaurant,
+      };
+    } catch (error) {
+      return {
+        ...error,
+        data: null,
+      };
+    }
+  },
 };
