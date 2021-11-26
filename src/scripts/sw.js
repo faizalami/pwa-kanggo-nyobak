@@ -1,16 +1,36 @@
 import 'regenerator-runtime';
-import CacheHelper from './utils/cache-helper';
+import { registerRoute } from 'workbox-routing';
+import { NetworkFirst } from 'workbox-strategies';
+import { ExpirationPlugin } from 'workbox-expiration';
+import { precacheAndRoute } from 'workbox-precaching';
+import {
+  pageCache,
+  imageCache,
+  staticResourceCache,
+  googleFontsCache,
+} from 'workbox-recipes';
 
-const { assets } = global.serviceWorkerOption;
+precacheAndRoute(self.__WB_MANIFEST);
 
-self.addEventListener('install', (event) => {
-  event.waitUntil(CacheHelper.cachingAppShell([...assets, './']));
-});
+pageCache();
 
-self.addEventListener('activate', (event) => {
-  event.waitUntil(CacheHelper.deleteOldCache());
-});
+googleFontsCache();
 
-self.addEventListener('fetch', (event) => {
-  event.respondWith(CacheHelper.revalidateCache(event.request));
-});
+staticResourceCache();
+
+imageCache();
+
+registerRoute(
+  ({ url }) => `${url.origin}/` === process.env.API_BASE_URL &&
+                  !url.pathname.startsWith('/images/'),
+  new NetworkFirst({
+    networkTimeoutSeconds: 3,
+    cacheName: 'api',
+    plugins: [
+      new ExpirationPlugin({
+        maxEntries: 50,
+        maxAgeSeconds: 5 * 60, // 5 minutes
+      }),
+    ],
+  }),
+);
