@@ -2,6 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Courgette&family=Open+Sans:wght@400;700&display=swap');
 
 // Reset styles & base styles
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
 * {
   font-family: 'Open Sans', sans-serif;
   box-sizing: border-box;
@@ -34,6 +38,7 @@ a, button, input, textarea {
 a {
   text-decoration: none;
   line-height: 44px;
+  height: 44px;
 }
 
 button {

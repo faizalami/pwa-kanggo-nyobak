@@ -27,7 +27,14 @@ class RestaurantCard extends HTMLElement {
   render () {
     this.innerHTML = `
       <article class="bg-white border-primary border-rad-8px">
-        <img class="pictures border-rad-8px" src="${process.env.API_BASE_URL}images/small/${this._restaurant.pictureId}" alt="${this._restaurant.name}">
+        <img
+          class="pictures border-rad-8px" 
+          src="${process.env.API_BASE_URL}images/small/${this._restaurant.pictureId}"
+          alt="${this._restaurant.name}"
+          loading="lazy"
+          width="640"
+          height="200"
+        >
         <section class="grid-template-5 m-a-8px">
           <div class="grid-col-span-4">
             <h3 class="m-y-0 txt-primary">

@@ -102,7 +102,18 @@ class Detail extends HTMLElement {
             </li>
           </ul>
           <section class="tablet-grid-col-span-3">
-            <img class="picture-detail m-y-8px" src="${process.env.API_BASE_URL}images/large/${this._detail.pictureId}" alt="${this._detail.name}">
+            <picture>
+              <source media="(min-width: 640px)" srcset="${process.env.API_BASE_URL}images/small/${this._detail.pictureId}">
+              <source media="(min-width: 1024px)" srcset="${process.env.API_BASE_URL}images/medium/${this._detail.pictureId}">
+              <source media="(min-width: 1280px)" srcset="${process.env.API_BASE_URL}images/large/${this._detail.pictureId}">
+              <img
+                class="picture-detail m-y-8px"
+                src="${process.env.API_BASE_URL}images/small/${this._detail.pictureId}" 
+                alt="${this._detail.name}"
+                width="640"
+                height="300"
+              >
+            </picture>
             <p class="txt-justify">${this._detail.description}</p>
           </section>
           <aside class="m-b-8px txt-primary tablet-grid-col-span-1">

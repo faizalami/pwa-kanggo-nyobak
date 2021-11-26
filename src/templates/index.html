@@ -1,98 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#AA2B1D"/>
-    <meta name="description" content="Find your favourite restaurants, Fai-Food helps you to discover cozy and comfy restaurants. Add your favorite restaurants to get more experiences with Fai-Food">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#AA2B1D"/>
+  <meta name="description" content="Find your favourite restaurants, Fai-Food helps you to discover cozy and comfy restaurants. Add your favorite restaurants to get more experiences with Fai-Food">
 
-    <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png">
-    <link rel="icon" href="/images/icons/favicon.ico">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png">
+  <link rel="icon" href="/images/icons/favicon.ico">
 
-    <title>Fai-Food | Restaurant Apps Starter Project</title>
+  <title>Fai-Food | Restaurant Apps Starter Project</title>
 </head>
 <body>
-    <button class="bg-primary border-primary txt-white p-a-8px border-rad-8px" id="skip-button">
-        Go to contents
-        <span>
+<button class="bg-primary border-primary txt-white p-a-8px border-rad-8px" id="skip-button">
+  Go to contents
+  <span>
             <svg xmlns="http://www.w3.org/2000/svg" height="12px" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
             </svg>
         </span>
+</button>
+<header class="txt-white bg-secondary flex flex-column tablet-flex-row tablet-align-items-center">
+  <div class="flex align-center p-a-8px">
+    <h1 id="brand" class="m-y-0 m-r-auto">Fai-Food</h1>
+    <button id="show-menu" class="bg-transparent border-primary align-items-center border-rad-8px block tablet-none" aria-label="Show Menu">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
     </button>
-    <header class="txt-white bg-secondary flex flex-column tablet-flex-row tablet-align-items-center">
-        <div class="flex align-center p-a-8px">
-            <h1 id="brand" class="m-y-0 m-r-auto">Fai-Food</h1>
-            <button id="show-menu" class="bg-transparent border-primary align-items-center border-rad-8px block tablet-none" aria-label="Show Menu">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </button>
-        </div>
-        <nav id="menu" class="max-height-0 height-auto tablet-max-height-screen tablet-height-100 tablet-m-l-auto tablet-m-r-8px">
-            <ul class="tablet-grid-template-4">
-                <li>
-                    <a
-                        class="menu-item bg-primary bg-hover-secondary border-transparent flex align-items-center p-x-8px tablet-justify-center tablet-border-rad-8px tablet-border-hover-primary laptop-p-y-8px"
-                        href="#"
-                    >
-                        Home
-                    </a>
-                </li>
-                <li>
-                    <a
-                        class="menu-item bg-primary bg-hover-secondary border-transparent flex align-items-center p-x-8px tablet-justify-center tablet-border-rad-8px tablet-border-hover-primary laptop-p-y-8px"
-                        href="#/favorite"
-                    >
-                        Favorite
-                    </a>
-                </li>
-                <li>
-                    <a
-                        class="menu-item bg-primary bg-hover-secondary border-transparent flex align-items-center p-x-8px tablet-justify-center tablet-border-rad-8px tablet-border-hover-primary laptop-p-y-8px"
-                        href="https://github.com/faizalami"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        About Us
-                    </a>
-                </li>
-                <li>
-                    <a
-                        class="menu-item bg-primary bg-hover-secondary border-transparent flex align-items-center p-x-8px tablet-justify-center tablet-border-rad-8px tablet-border-hover-primary laptop-p-y-8px"
-                        href="#/log-in"
-                    >
-                        Log in
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </header>
+  </div>
+  <nav id="menu" class="max-height-0 height-auto tablet-max-height-screen tablet-height-100 tablet-m-l-auto tablet-m-r-8px">
+    <ul class="tablet-grid-template-4">
+      <li>
+        <a
+          class="menu-item bg-primary bg-hover-secondary border-transparent flex align-items-center p-x-8px tablet-justify-center tablet-border-rad-8px tablet-border-hover-primary laptop-p-y-8px"
+          href="#"
+        >
+          Home
+        </a>
+      </li>
+      <li>
+        <a
+          class="menu-item bg-primary bg-hover-secondary border-transparent flex align-items-center p-x-8px tablet-justify-center tablet-border-rad-8px tablet-border-hover-primary laptop-p-y-8px"
+          href="#/favorite"
+        >
+          Favorite
+        </a>
+      </li>
+      <li>
+        <a
+          class="menu-item bg-primary bg-hover-secondary border-transparent flex align-items-center p-x-8px tablet-justify-center tablet-border-rad-8px tablet-border-hover-primary laptop-p-y-8px"
+          href="https://github.com/faizalami"
+          target="_blank"
+          rel="noreferrer"
+        >
+          About Us
+        </a>
+      </li>
+      <li>
+        <a
+          class="menu-item bg-primary bg-hover-secondary border-transparent flex align-items-center p-x-8px tablet-justify-center tablet-border-rad-8px tablet-border-hover-primary laptop-p-y-8px"
+          href="#/log-in"
+        >
+          Log in
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
 
-    <section id="hero" class="m-b-8px">
-        <img id="hero-picture" src="./images/heros/hero-image.jpg" alt="">
-        <div id="hero-text" class="p-a-8px txt-white">
-            <h2 id="hero-header" class="m-y-8px">Find Your Favourite Restaurants</h2>
-            <p class="m-a-0">
-                Discover cozy and comfy restaurants only in <strong>Fai-Food</strong>.<br />
-            </p>
-            <p class="m-a-0 m-b-8px">
-                <strong><a href="#/register" class="inline-flex">Join us</a></strong> to dine in.
-            </p>
-        </div>
-    </section>
+<section id="hero" class="m-b-8px">
+  <picture id="hero-picture">
+    <source type="image/webp" srcset="./images/heros/hero-image.webp">
+    <source type="image/jpeg" srcset="./images/heros/hero-image.jpg">
+    <img src="./images/heros/hero-image.jpg" alt="" width="640" height="250">
+  </picture>
+  <div id="hero-text" class="p-a-8px txt-white">
+    <h2 id="hero-header" class="m-y-8px">Find Your Favourite Restaurants</h2>
+    <p class="m-a-0">
+      Discover cozy and comfy restaurants only in <strong>Fai-Food</strong>.<br />
+    </p>
+    <p class="m-a-0 m-b-8px">
+      <strong><a href="#/register" class="inline-flex">Join us</a></strong> to dine in.
+    </p>
+  </div>
+</section>
 
-    <main tabindex="0" id="content" class="m-x-auto m-b-16px p-x-8px">
+<main tabindex="0" id="content" class="m-x-auto m-b-16px p-x-8px">
 
-    </main>
+</main>
 
-    <footer class="bg-primary flex align-items-center justify-center txt-white txt-center m-t-auto">
-        © <span id="year"></span> &nbsp;<a class="inline-flex align-items-center" href="https://github.com/faizalami" target="_blank" rel="noreferrer">Faizal Amiruddin</a>.
-    </footer>
+<footer class="bg-primary flex align-items-center justify-center txt-white txt-center m-t-auto">
+  © <span id="year"></span> &nbsp;<a class="inline-flex align-items-center" href="https://github.com/faizalami" target="_blank" rel="noreferrer">Faizal Amiruddin</a>.
+</footer>
 
-    <div id="loading" class="flex flex-column justify-center align-items-center">
-      <img src="/images/icons/logo.png" alt="">
-      <h2 class="txt-white">Please wait...</h2>
-    </div>
+<div id="loading" class="flex flex-column justify-center align-items-center">
+  <img src="/images/icons/logo.png" alt="">
+  <h2 class="txt-white">Please wait...</h2>
+</div>
 </body>
 </html>
