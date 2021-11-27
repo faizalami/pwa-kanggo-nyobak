@@ -17,14 +17,13 @@ export default {
     Object.keys(routes).forEach(url => {
       const component = routes[url];
       parsedRoutes.push({
-        name: `${this._pascalToKebab(component.name)}-page`,
         component,
         match: match(url, { decode: decodeURIComponent }),
       });
     });
     return parsedRoutes;
   },
-  matchedRoute () {
+  async matchedRoute () {
     let routeFound = null;
     this.getRoutes().some(route => {
       const result = route.match(this.getHashLocation());
@@ -37,6 +36,12 @@ export default {
       }
       return false;
     });
+    const componentFound = await routeFound.component;
+    routeFound = {
+      ...routeFound,
+      component: componentFound.default,
+      name: `${this._pascalToKebab(componentFound.default.name)}-page`,
+    };
     return routeFound;
   },
 };

@@ -24,7 +24,7 @@ class Detail extends HTMLElement {
   }
 
   async _getDetail () {
-    const { params: { id } } = router.matchedRoute();
+    const { params: { id } } = await router.matchedRoute();
     LoadingInitiator.showLoading();
     const { data } = await restaurantsService.detail(id);
     LoadingInitiator.hideLoading();

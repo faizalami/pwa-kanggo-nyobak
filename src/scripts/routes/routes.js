@@ -1,6 +1,6 @@
-import Home from '../views/Home';
-import Favorite from '../views/Favorite';
-import Detail from '../views/Detail';
+const Home = import('../views/Home');
+const Favorite = import('../views/Favorite');
+const Detail = import('../views/Detail');
 
 const routes = {
   '/': Home,

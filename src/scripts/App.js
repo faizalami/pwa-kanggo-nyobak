@@ -17,8 +17,8 @@ class App {
     });
   }
 
-  render () {
-    const matchedRoute = router.matchedRoute();
+  async render () {
+    const matchedRoute = await router.matchedRoute();
     if (matchedRoute) {
       if (!customElements.get(matchedRoute.name)) {
         customElements.define(matchedRoute.name, matchedRoute.component);
