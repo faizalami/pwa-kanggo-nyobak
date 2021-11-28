@@ -1,4 +1,5 @@
 import '../components/LikeButton';
+import favoritesService from '../services/favorites';
 
 class RestaurantCard extends HTMLElement {
   connectedCallback () {
@@ -19,6 +20,7 @@ class RestaurantCard extends HTMLElement {
     if (likeButtonWrapper) {
       const likeButton = document.createElement('like-button');
       likeButton.classList.add('like-button');
+      likeButton.service = favoritesService;
       likeButton.restaurant = this._restaurant;
       likeButtonWrapper.appendChild(likeButton);
     }

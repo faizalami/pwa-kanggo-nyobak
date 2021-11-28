@@ -4,9 +4,15 @@ import '../components/RestaurantCard';
 import favoritesService from '../services/favorites';
 
 class Favorite extends RestaurantList {
+  constructor () {
+    super();
+
+    this._favoriteDbService = favoritesService;
+  }
+
   async _loadRestaurants () {
     LoadingInitiator.showLoading();
-    const data = await favoritesService.getAll();
+    const data = await this._favoriteDbService.getAll();
     LoadingInitiator.hideLoading();
     this._displayRestaurants(data);
 

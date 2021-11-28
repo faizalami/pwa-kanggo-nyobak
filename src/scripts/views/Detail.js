@@ -2,10 +2,17 @@ import LoadingInitiator from '../classes/LoadingInitiator';
 import './NotFound';
 import '../components/LikeButton';
 import restaurantsService from '../services/restaurants';
+import favoritesService from '../services/favorites';
 import router from '../routes/router';
 import handleBrokenPictures from '../utils/handle-broken-pictures';
 
 class Detail extends HTMLElement {
+  constructor () {
+    super();
+
+    this._restaurantHttpService = restaurantsService;
+  }
+
   async connectedCallback () {
     await this._getDetail();
     this.render();
@@ -19,6 +26,7 @@ class Detail extends HTMLElement {
       const likeButton = document.createElement('like-button');
       likeButton.classList.add('like-button');
       likeButton.restaurant = this._detail;
+      likeButton.service = favoritesService;
       likeButtonWrapper.appendChild(likeButton);
     }
   }
@@ -26,7 +34,7 @@ class Detail extends HTMLElement {
   async _getDetail () {
     const { params: { id } } = await router.matchedRoute();
     LoadingInitiator.showLoading();
-    const { data } = await restaurantsService.detail(id);
+    const { data } = await this._restaurantHttpService.detail(id);
     LoadingInitiator.hideLoading();
     this._detail = data;
   }
@@ -44,7 +52,7 @@ class Detail extends HTMLElement {
         };
 
         LoadingInitiator.showLoading();
-        const { error, data } = await restaurantsService.postReview(payload);
+        const { error, data } = await this._restaurantHttpService.postReview(payload);
         LoadingInitiator.hideLoading();
 
         if (!error) {

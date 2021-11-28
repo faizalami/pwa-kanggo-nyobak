@@ -4,16 +4,22 @@ import '../components/RestaurantCard';
 import restaurantsService from '../services/restaurants';
 
 class Home extends RestaurantList {
+  constructor () {
+    super();
+
+    this._restaurantHttpService = restaurantsService;
+  }
+
   async _searchRestaurants (search) {
     LoadingInitiator.showLoading();
-    const { data } = await restaurantsService.search(search);
+    const { data } = await this._restaurantHttpService.search(search);
     LoadingInitiator.hideLoading();
     return data;
   }
 
   async _loadRestaurants () {
     LoadingInitiator.showLoading();
-    const { data } = await restaurantsService.getAll();
+    const { data } = await this._restaurantHttpService.getAll();
     LoadingInitiator.hideLoading();
     this._displayRestaurants(data);
   }
