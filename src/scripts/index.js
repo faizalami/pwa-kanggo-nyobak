@@ -5,6 +5,9 @@ import MenuInitiator from './classes/MenuInitiator';
 import FooterInitiator from './classes/FooterInitiator';
 import SkipToContentInitiator from './classes/SkipToContentInitiator';
 import LoadingInitiator from './classes/LoadingInitiator';
+import HeroPictureInitiator from './classes/HeroPictureInitiator';
+import responsiveImages from '../public/images/heros/hero-image.jpg?sizes[]=640,sizes[]=1024,sizes[]=1280';
+import responsiveImagesWebp from '../public/images/heros/hero-image.jpg?sizes[]=640,sizes[]=1024,sizes[]=1280&format=webp';
 import swRegister from './utils/sw-register';
 
 const menu = new MenuInitiator({
@@ -24,6 +27,13 @@ const app = new App(document.body.querySelector('#content'), {
   skip,
   loading,
 });
+
+(new HeroPictureInitiator({
+  heroPictureContainer: document.body.querySelector('#hero-picture'),
+  responsiveImages,
+  responsiveImagesWebp,
+  imageType: 'image/jpeg',
+})).init();
 
 window.addEventListener('hashchange', () => {
   app.render();

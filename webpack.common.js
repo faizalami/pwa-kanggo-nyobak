@@ -11,6 +11,19 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
   },
+  module: {
+    rules: [
+      {
+        test: /\.(jpe?g|png|webp)$/i,
+        use: {
+          loader: 'responsive-loader',
+          options: {
+            adapter: require('responsive-loader/sharp'),
+          },
+        },
+      },
+    ],
+  },
   plugins: [
     new Dotenv(),
     new HtmlWebpackPlugin({

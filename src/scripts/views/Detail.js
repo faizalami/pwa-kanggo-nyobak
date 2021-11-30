@@ -25,8 +25,8 @@ class Detail extends HTMLElement {
     if (likeButtonWrapper) {
       const likeButton = document.createElement('like-button');
       likeButton.classList.add('like-button');
-      likeButton.restaurant = this._detail;
       likeButton.service = favoritesService;
+      likeButton.restaurant = this._detail;
       likeButtonWrapper.appendChild(likeButton);
     }
   }
@@ -111,12 +111,12 @@ class Detail extends HTMLElement {
           </ul>
           <section class="tablet-grid-col-span-3">
             <picture>
-              <source media="(min-width: 640px)" srcset="${process.env.API_BASE_URL}images/small/${this._detail.pictureId}">
-              <source media="(min-width: 1024px)" srcset="${process.env.API_BASE_URL}images/medium/${this._detail.pictureId}">
-              <source media="(min-width: 1280px)" srcset="${process.env.API_BASE_URL}images/large/${this._detail.pictureId}">
+              <source media="(max-width: 640px)" srcset="${process.env.API_BASE_URL}images/small/${this._detail.pictureId}">
+              <source media="(max-width: 1024px)" srcset="${process.env.API_BASE_URL}images/medium/${this._detail.pictureId}">
+              <source media="(max-width: 1280px)" srcset="${process.env.API_BASE_URL}images/large/${this._detail.pictureId}">
               <img
                 class="picture-detail m-y-8px"
-                src="${process.env.API_BASE_URL}images/small/${this._detail.pictureId}" 
+                src="${process.env.API_BASE_URL}images/large/${this._detail.pictureId}" 
                 alt="${this._detail.name}"
                 width="640"
                 height="300"
