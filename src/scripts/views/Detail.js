@@ -39,28 +39,50 @@ class Detail extends HTMLElement {
     this._detail = data;
   }
 
-  async _afterRender () {
+  _initPostReview () {
     const postReviewForm = this.querySelector('#post-review-form');
     if (postReviewForm) {
       postReviewForm.addEventListener('submit', async event => {
         event.preventDefault();
 
-        const payload = {
-          id: this._detail.id,
-          name: postReviewForm.elements.name.value,
-          review: postReviewForm.elements.review.value,
-        };
+        if (window.navigator.onLine) {
+          const payload = {
+            id: this._detail.id,
+            name: postReviewForm.elements.name.value,
+            review: postReviewForm.elements.review.value,
+          };
 
-        LoadingInitiator.showLoading();
-        const { error, data } = await this._restaurantHttpService.postReview(payload);
-        LoadingInitiator.hideLoading();
+          LoadingInitiator.showLoading();
+          const { error, data } = await this._restaurantHttpService.postReview(payload);
+          LoadingInitiator.hideLoading();
 
-        if (!error) {
-          this._detail.customerReviews = [...data];
-          this.render();
+          if (!error) {
+            this._detail.customerReviews = [...data];
+            this.render();
+          } else {
+            this._showError('Failed to post review.');
+          }
+        } else {
+          this._showError('You are offline.');
         }
       });
     }
+  }
+
+  _showError (message) {
+    const errorBox = this.querySelector('#error-review');
+    if (errorBox) {
+      errorBox.innerHTML = message;
+      errorBox.classList.replace('none', 'block');
+      setTimeout(() => {
+        errorBox.classList.replace('block', 'none');
+      }, 3000);
+    }
+  }
+
+  async _afterRender () {
+    this._initPostReview();
+    this._initLikeButton();
   }
 
   render () {
@@ -183,6 +205,7 @@ class Detail extends HTMLElement {
                 </button>
               </form>
             </div>
+            <div id="error-review" class="none border-primary border-rad-8px m-y-8px p-a-8px txt-primary"></div>
             <div>
               ${customerReviews}
             </div>
@@ -193,7 +216,6 @@ class Detail extends HTMLElement {
       this.innerHTML = '<not-found></not-found>';
     }
     this._afterRender();
-    this._initLikeButton();
   }
 }
 
