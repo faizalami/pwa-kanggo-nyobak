@@ -1,9 +1,9 @@
 import { openDB } from 'idb';
 export default {
-  dbName: process.env.DATABASE_NAME,
-  dbVersion: process.env.DATABASE_VERSION,
-  async dbInstance (storeName) {
-    return await openDB(this.dbName, this.dbVersion, {
+  dbName: process.env.DATABASE_NAME || 'db',
+  dbVersion: process.env.DATABASE_VERSION || 1,
+  dbInstance (storeName) {
+    return openDB(this.dbName, this.dbVersion, {
       upgrade (database) {
         database.createObjectStore(storeName, { keyPath: 'id' });
       },

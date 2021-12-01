@@ -61,7 +61,7 @@ class RestaurantCard extends HTMLElement {
               </li>
             </ul>
           </div>
-          <div class="grid-col-span-1 card-like-button-wrapper"></div>
+          <div class="grid-col-span-1 m-l-auto card-like-button-wrapper"></div>
           <p class="grid-col-span-5 txt-justify">${this._restaurant.description.substring(0, 150)}...</p>
         </section>
       </article>
@@ -70,4 +70,4 @@ class RestaurantCard extends HTMLElement {
   }
 }
 
-customElements.define('restaurant-card', RestaurantCard);
+customElements.get('restaurant-card') || customElements.define('restaurant-card', RestaurantCard);

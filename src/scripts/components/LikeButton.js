@@ -39,10 +39,11 @@ class LikeButton extends HTMLElement {
       if (this._restaurant) {
         if (this._liked) {
           await this._favoriteDbService.delete(this._restaurant.id);
+          this._liked = false;
         } else {
           await this._favoriteDbService.save(this._restaurant);
+          this._liked = true;
         }
-        this._liked = !this._liked;
         this.dispatchEvent(new CustomEvent('liked', { detail: this._liked }));
         this.render();
       }
@@ -88,4 +89,4 @@ class LikeButton extends HTMLElement {
   }
 }
 
-customElements.define('like-button', LikeButton);
+customElements.get('like-button') || customElements.define('like-button', LikeButton);
