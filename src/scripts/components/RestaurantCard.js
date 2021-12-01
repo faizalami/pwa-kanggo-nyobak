@@ -40,7 +40,7 @@ class RestaurantCard extends HTMLElement {
         <section class="grid-template-5 m-a-8px">
           <div class="grid-col-span-4">
             <h3 class="m-y-0 txt-primary">
-              <a href="#/detail/${this._restaurant.id}" class="flex align-items-center">${this._restaurant.name}</a>
+              <a href="#/detail/${this._restaurant.id}" class="restaurant-detail-link flex align-items-center">${this._restaurant.name}</a>
             </h3>
             <ul class="m-t-8px flex txt-primary">
               <li>

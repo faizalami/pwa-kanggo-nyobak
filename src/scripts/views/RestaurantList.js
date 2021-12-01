@@ -20,7 +20,7 @@ class RestaurantList extends HTMLElement {
     } else {
       restaurantsContainer.innerHTML = `
         <div class="grid-col-span-1 laptop-grid-col-span-3">
-          <h3 tabindex="0" class="txt-center txt-primary">No Restaurant Found.</h3>
+          <h3 tabindex="0" class="restaurant-not-found txt-center txt-primary">No Restaurant Found.</h3>
         </div>
       `;
     }

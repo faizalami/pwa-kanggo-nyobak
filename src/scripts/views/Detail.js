@@ -91,13 +91,13 @@ class Detail extends HTMLElement {
       const foods = this._detail.menus.foods.map(item => `<li class="dotted">${item.name}</li>`).join('');
       const drinks = this._detail.menus.drinks.map(item => `<li class="dotted">${item.name}</li>`).join('');
       const customerReviews = this._detail.customerReviews.map(item => `
-        <div class="flex flex-row align-items-center border-primary border-rad-8px m-y-8px p-a-8px">
+        <div class="review-box flex flex-row align-items-center border-primary border-rad-8px m-y-8px p-a-8px">
           <div class="comment-profile bg-secondary txt-white m-r-8px" role="img" aria-label="">${item.name[0]}</div>
           <div>
-            <p class="m-y-0 txt-primary"><strong>${item.name}</strong></p>    
+            <p class="m-y-0 txt-primary"><strong class="reviewer-name">${item.name}</strong></p>    
             <p class="m-y-0"><small>${item.date}</small></p>    
           </div>
-          <div class="width-100"><p>${item.review}</p></div>
+          <div class="width-100"><p class="review-message">${item.review}</p></div>
         </div>
       `).join('');
       this.innerHTML = `
