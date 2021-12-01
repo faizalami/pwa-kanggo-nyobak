@@ -30,3 +30,20 @@ $ npm run start-prod
 # atau
 $ yarn start-prod
 ```
+
+### Testing
+```shell
+# Unit testing
+$ npm run test
+# atau
+$ yarn test
+#
+# e2e testing
+$ npm run start-dev
+# atau
+$ yarn start-dev
+# lalu
+$ npm run e2e
+# atau
+$ yarn e2e
+```
