@@ -1,4 +1,4 @@
-import httpreq from '../utils/httpreq';
+import httpreq from '../utils/axios';
 
 export default {
   async getAll () {
